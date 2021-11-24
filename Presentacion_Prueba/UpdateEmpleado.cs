@@ -30,7 +30,7 @@ namespace Presentacion_Prueba
             SqlConnection connection;
 
             //Conexion a db
-            connectionString = @"Server=PC-SAMUEL\SMONTIVERO;Database=Autos para 5;Trusted_Connection=True;";
+            connectionString = @"Server=.;Data Source=MAXI\MAX;Initial Catalog=Autos para 5;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             connection = new SqlConnection(connectionString);
 
             //Busqueda de coincidencia
@@ -107,6 +107,7 @@ namespace Presentacion_Prueba
                 else if (datoInt >= 0)
                 { txtDNI.Text = datoInt.ToString(); }
 
+                lblInforme.BackColor = Color.Green;
                 lblInforme.Text = "Se han guardados los datos!";
 
             }
@@ -125,6 +126,7 @@ namespace Presentacion_Prueba
                 else if (datoInt >= 0)
                 { txtTelefono.Text = datoInt.ToString(); }
 
+                lblInforme.BackColor = Color.Green;   
                 lblInforme.Text = "Se han guardados los datos!";
 
             }
@@ -219,8 +221,10 @@ namespace Presentacion_Prueba
             SqlConnection connection;
             SqlDataAdapter adaptador = new SqlDataAdapter();
 
+            lblInforme.BackColor = Color.Green;
+            lblInforme.Text = "Se han eliminado los campos con éxito";
 
-            connectionString = @"Server=PC-SAMUEL\SMONTIVERO;Database=Autos para 5;Trusted_Connection=True;";
+            connectionString = @"Server=.;Data Source=MAXI\MAX;Initial Catalog=Autos para 5;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             connection = new SqlConnection(connectionString);
             connection.Open();
 

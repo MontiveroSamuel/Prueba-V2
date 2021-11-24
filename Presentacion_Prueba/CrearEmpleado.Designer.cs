@@ -41,7 +41,6 @@ namespace Presentacion_Prueba
             this.txtObservaciones = new System.Windows.Forms.TextBox();
             this.txtDNI = new System.Windows.Forms.TextBox();
             this.txtTelefono = new System.Windows.Forms.TextBox();
-            this.txtProvincia = new System.Windows.Forms.TextBox();
             this.txtCiudad = new System.Windows.Forms.TextBox();
             this.txtBarrio = new System.Windows.Forms.TextBox();
             this.txtDireccion = new System.Windows.Forms.TextBox();
@@ -54,6 +53,7 @@ namespace Presentacion_Prueba
             this.lblNombre = new System.Windows.Forms.Label();
             this.btnCrear = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.cbProvincias = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBuscaEmpleado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -87,6 +87,7 @@ namespace Presentacion_Prueba
             this.btnLimpiar.TabIndex = 49;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // lblObserv
             // 
@@ -163,32 +164,25 @@ namespace Presentacion_Prueba
             this.txtTelefono.Size = new System.Drawing.Size(100, 20);
             this.txtTelefono.TabIndex = 36;
             // 
-            // txtProvincia
-            // 
-            this.txtProvincia.Location = new System.Drawing.Point(575, 141);
-            this.txtProvincia.Name = "txtProvincia";
-            this.txtProvincia.Size = new System.Drawing.Size(100, 20);
-            this.txtProvincia.TabIndex = 35;
-            // 
             // txtCiudad
             // 
             this.txtCiudad.Location = new System.Drawing.Point(575, 114);
             this.txtCiudad.Name = "txtCiudad";
-            this.txtCiudad.Size = new System.Drawing.Size(100, 20);
+            this.txtCiudad.Size = new System.Drawing.Size(121, 20);
             this.txtCiudad.TabIndex = 34;
             // 
             // txtBarrio
             // 
             this.txtBarrio.Location = new System.Drawing.Point(575, 87);
             this.txtBarrio.Name = "txtBarrio";
-            this.txtBarrio.Size = new System.Drawing.Size(100, 20);
+            this.txtBarrio.Size = new System.Drawing.Size(121, 20);
             this.txtBarrio.TabIndex = 33;
             // 
             // txtDireccion
             // 
             this.txtDireccion.Location = new System.Drawing.Point(575, 61);
             this.txtDireccion.Name = "txtDireccion";
-            this.txtDireccion.Size = new System.Drawing.Size(100, 20);
+            this.txtDireccion.Size = new System.Drawing.Size(121, 20);
             this.txtDireccion.TabIndex = 32;
             // 
             // lblDireccion
@@ -278,11 +272,24 @@ namespace Presentacion_Prueba
             this.pictureBox1.TabIndex = 27;
             this.pictureBox1.TabStop = false;
             // 
+            // cbProvincias
+            // 
+            this.cbProvincias.AllowDrop = true;
+            this.cbProvincias.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbProvincias.FormattingEnabled = true;
+            this.cbProvincias.Location = new System.Drawing.Point(575, 144);
+            this.cbProvincias.Name = "cbProvincias";
+            this.cbProvincias.Size = new System.Drawing.Size(121, 21);
+            this.cbProvincias.TabIndex = 53;
+            this.cbProvincias.Text = "Elegir...";
+            this.cbProvincias.SelectedIndexChanged += new System.EventHandler(this.cbProvincias_SelectedIndexChanged);
+            // 
             // CrearEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cbProvincias);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.panel1);
@@ -297,7 +304,6 @@ namespace Presentacion_Prueba
             this.Controls.Add(this.txtObservaciones);
             this.Controls.Add(this.txtDNI);
             this.Controls.Add(this.txtTelefono);
-            this.Controls.Add(this.txtProvincia);
             this.Controls.Add(this.txtCiudad);
             this.Controls.Add(this.txtBarrio);
             this.Controls.Add(this.txtDireccion);
@@ -308,6 +314,7 @@ namespace Presentacion_Prueba
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblTitulo);
             this.Name = "CrearEmpleado";
+            this.RightToLeftLayout = true;
             this.Text = "CrearEmpleado";
             this.Load += new System.EventHandler(this.CrearEmpleado_Load);
             this.panel1.ResumeLayout(false);
@@ -333,7 +340,6 @@ namespace Presentacion_Prueba
         private System.Windows.Forms.TextBox txtObservaciones;
         private System.Windows.Forms.TextBox txtDNI;
         private System.Windows.Forms.TextBox txtTelefono;
-        private System.Windows.Forms.TextBox txtProvincia;
         private System.Windows.Forms.TextBox txtCiudad;
         private System.Windows.Forms.TextBox txtBarrio;
         private System.Windows.Forms.TextBox txtDireccion;
@@ -346,5 +352,6 @@ namespace Presentacion_Prueba
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.Button btnCrear;
+        private System.Windows.Forms.ComboBox cbProvincias;
     }
 }
