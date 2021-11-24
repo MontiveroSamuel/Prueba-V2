@@ -40,7 +40,6 @@ namespace Presentacion_Prueba
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.txtBarrio = new System.Windows.Forms.TextBox();
             this.txtCiudad = new System.Windows.Forms.TextBox();
-            this.txtProvincia = new System.Windows.Forms.TextBox();
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.txtDNI = new System.Windows.Forms.TextBox();
             this.txtFechaInicio = new System.Windows.Forms.TextBox();
@@ -57,6 +56,7 @@ namespace Presentacion_Prueba
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblInforme = new System.Windows.Forms.Label();
+            this.cbProvincias = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBuscaEmpleado)).BeginInit();
@@ -156,13 +156,6 @@ namespace Presentacion_Prueba
             this.txtCiudad.Name = "txtCiudad";
             this.txtCiudad.Size = new System.Drawing.Size(100, 20);
             this.txtCiudad.TabIndex = 9;
-            // 
-            // txtProvincia
-            // 
-            this.txtProvincia.Location = new System.Drawing.Point(303, 149);
-            this.txtProvincia.Name = "txtProvincia";
-            this.txtProvincia.Size = new System.Drawing.Size(100, 20);
-            this.txtProvincia.TabIndex = 10;
             // 
             // txtTelefono
             // 
@@ -309,11 +302,23 @@ namespace Presentacion_Prueba
             this.lblInforme.TabIndex = 0;
             this.lblInforme.Text = "label1";
             // 
-            // CrearEmpleado
+            // cbProvincias
+            // 
+            this.cbProvincias.AllowDrop = true;
+            this.cbProvincias.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbProvincias.FormattingEnabled = true;
+            this.cbProvincias.Location = new System.Drawing.Point(303, 149);
+            this.cbProvincias.Name = "cbProvincias";
+            this.cbProvincias.Size = new System.Drawing.Size(100, 21);
+            this.cbProvincias.TabIndex = 54;
+            this.cbProvincias.Text = "Elegir...";
+            // 
+            // UpdateEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cbProvincias);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnEliminar);
@@ -329,7 +334,6 @@ namespace Presentacion_Prueba
             this.Controls.Add(this.txtFechaInicio);
             this.Controls.Add(this.txtDNI);
             this.Controls.Add(this.txtTelefono);
-            this.Controls.Add(this.txtProvincia);
             this.Controls.Add(this.txtCiudad);
             this.Controls.Add(this.txtBarrio);
             this.Controls.Add(this.txtDireccion);
@@ -340,7 +344,7 @@ namespace Presentacion_Prueba
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.picLogo);
             this.Controls.Add(this.lblTitulo);
-            this.Name = "CrearEmpleado";
+            this.Name = "UpdateEmpleado";
             this.Text = "CrearEmpleado";
             this.Load += new System.EventHandler(this.CrearEmpleado_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
@@ -365,7 +369,6 @@ namespace Presentacion_Prueba
         private System.Windows.Forms.TextBox txtDireccion;
         private System.Windows.Forms.TextBox txtBarrio;
         private System.Windows.Forms.TextBox txtCiudad;
-        private System.Windows.Forms.TextBox txtProvincia;
         private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.TextBox txtDNI;
         private System.Windows.Forms.TextBox txtFechaInicio;
@@ -382,5 +385,6 @@ namespace Presentacion_Prueba
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblInforme;
+        private System.Windows.Forms.ComboBox cbProvincias;
     }
 }

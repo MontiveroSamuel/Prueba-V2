@@ -44,7 +44,7 @@ namespace Presentacion_Prueba
 
 
             //sql es el string que contiene la consulta
-            sql = "SELECT * FROM[Autos para 5].[dbo].[Clientes]";
+            sql = "SELECT * FROM [Autos para 5].[dbo].[Empleado]";
 
             SqlDataAdapter adaptador = new SqlDataAdapter(sql, cnn);
             DataTable dataTable = new DataTable();
@@ -94,7 +94,7 @@ namespace Presentacion_Prueba
                         
            // SqlCommand command;
 
-            sql = "SELECT [NroCliente], [ApellidoNombre],[Credito] FROM[DiariosPrueba].[dbo].[Clientes] WHERE [ApellidoNombre] like '%" +txtBuscador.Text +"%'";
+            sql = "SELECT * FROM[Autos para 5].[dbo].[Empleado] WHERE [Nombre] like '%" + txtBuscador.Text +"%'";
             
             cnn.Open();
 
