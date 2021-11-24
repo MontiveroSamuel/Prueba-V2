@@ -25,7 +25,7 @@ namespace Presentacion_Prueba
             SqlConnection connection;
 
             //Conexion a db
-            connectionString = @"Server=PC-SAMUEL\SMONTIVERO;Database=Autos para 5;Trusted_Connection=True;";
+            connectionString = @"Server=.;Data Source=MAXI\MAX;Initial Catalog=Autos para 5;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             connection = new SqlConnection(connectionString); 
             connection = new SqlConnection(connectionString);
 
@@ -56,22 +56,49 @@ namespace Presentacion_Prueba
         private void CrearEmpleado_Load(object sender, EventArgs e)
         {
             lblInforme.Text = "";
+
+            
+            //Agregar datos al combobox 'provincias'
+            String connectionString; // se crea un string de conexion a la db
+            SqlConnection connection;//var de conexion sql
+
+            //se escribe el stringconnection al directorio de la db
+            connectionString = @"Server=.;Data Source=MAXI\MAX;Initial Catalog=Autos para 5;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            connection = new SqlConnection(connectionString);
+
+            //creamos el comando para traer las provincias con su descripcion
+            SqlCommand comando = new SqlCommand("SELECT Descripcion FROM Provincia", connection) ;
+            
+            //abrimos conexion con la base de datos
+            connection.Open();
+
+            //creamos un registro que lea el comando sql creado arriba
+
+            SqlDataReader registro = comando.ExecuteReader();
+
+            //'mientras haya datos en el registro', los combierte a string y los agrega al Combobox
+            while (registro.Read())
+            {
+                cbProvincias.Items.Add(registro["Descripcion"].ToString());
+            }
+            connection.Close();
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
-
+            DateTime fecha_de_hoy = DateTime.Now;
             SqlCommand command;
             String sqlQueryUbicacion, sqlQueryBarrio, sqlQueryCiudad, sqlQueryProvincia, sqlQueryTelefono, sqlQueryDirecta, connectionString;
             SqlConnection connection;
             SqlDataAdapter adaptador = new SqlDataAdapter();
 
 
-            connectionString = @"Server=PC-SAMUEL\SMONTIVERO;Database=Autos para 5;Trusted_Connection=True;";
+            connectionString = @"Server=.;Data Source=MAXI\MAX;Initial Catalog=Autos para 5;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             connection = new SqlConnection(connectionString);
 
             if (string.IsNullOrEmpty(txtDNI.Text))
             {
+                lblInforme.BackColor = Color.Red;
                 lblInforme.Text = "No se pude dejar el campo DNI en blanco";
                 return;
             }
@@ -85,11 +112,13 @@ namespace Presentacion_Prueba
                 else if (datoInt >= 0)
                 { txtDNI.Text = datoInt.ToString(); }
 
+                lblInforme.BackColor = Color.Green;
                 lblInforme.Text = "Se han guardados los datos!";
 
             }
             else
             {
+                lblInforme.BackColor = Color.Red;
                 lblInforme.Text = "El DNI no puede contener letras";
                 return;
 
@@ -103,11 +132,13 @@ namespace Presentacion_Prueba
                 else if (datoInt >= 0)
                 { txtTelefono.Text = datoInt.ToString(); }
 
+                lblInforme.BackColor = Color.Green;
                 lblInforme.Text = "Se han guardados los datos!";
 
             }
             else
             {
+                lblInforme.BackColor = Color.Red;
                 lblInforme.Text = "El teléfono no puede contener letras";
                 return;
 
@@ -116,33 +147,42 @@ namespace Presentacion_Prueba
 
             if (string.IsNullOrEmpty(txtTelefono.Text))
             {
+                lblInforme.BackColor = Color.Red;
                 lblInforme.Text = "No se pude dejar el campo teléfono en blanco";
+                return;
             }
 
 
 
             connection.Open();
 
-            sqlQueryProvincia = "INSERT INTO [Provincia] ([Descripcion]) VALUES ('" + txtProvincia.Text + "')";
-            command = new SqlCommand(sqlQueryProvincia, connection);
 
-            adaptador.UpdateCommand = new SqlCommand(sqlQueryProvincia, connection);
-            adaptador.UpdateCommand.ExecuteNonQuery();
+            //sqlQueryProvincia = "INSERT INTO [Provincia] ([Descripcion]) VALUES ('" + cbProvincias.SelectedItem.ToString() + "')";
+            //command = new SqlCommand(sqlQueryProvincia, connection);
+
+            //adaptador.UpdateCommand = new SqlCommand(sqlQueryProvincia, connection);
+            //adaptador.UpdateCommand.ExecuteNonQuery();
 
 
-            sqlQueryCiudad = "INSERT INTO [Ciudad] ([Descripcion], [Id_Provincia]) values ('" + txtCiudad.Text + "', 3);";
+
+            object value = cbProvincias.SelectedValue;
+            //MessageBox.Show(value.ToString());
+
+
+
+            sqlQueryCiudad = "INSERT INTO [Ciudad] ([Descripcion], [Id_Provincia]) values ('" + txtCiudad.Text + "',  '" + value + "')";
             command = new SqlCommand(sqlQueryCiudad, connection);
 
             adaptador.UpdateCommand = new SqlCommand(sqlQueryCiudad, connection);
             adaptador.UpdateCommand.ExecuteNonQuery();
 
-            sqlQueryBarrio = "INSERT INTO [Barrio] ([Descripcion],[Id_Ciudad]) values  ('" + txtBarrio.Text + "', 3)";
+            sqlQueryBarrio = "INSERT INTO [Barrio] ([Descripcion],[Id_Ciudad]) values  ('" + txtBarrio.Text + "', 2)";
             command = new SqlCommand(sqlQueryBarrio, connection);
 
             adaptador.UpdateCommand = new SqlCommand(sqlQueryBarrio, connection);
             adaptador.UpdateCommand.ExecuteNonQuery();
 
-            sqlQueryUbicacion = "INSERT INTO [Ubicacion_Empleados] ([Id_Barrio], [Id_Estado], [Direccion], [Fecha_De_Inicio]) values (3, 1, '"+ txtDireccion.Text +"', '2021-11-20')";
+            sqlQueryUbicacion = "INSERT INTO [Ubicacion_Empleados] ([Id_Barrio], [Id_Estado], [Direccion], [Fecha_De_Inicio]) values (1, 1, '"+ txtDireccion.Text + "', '"+ fecha_de_hoy +"')";
             command = new SqlCommand(sqlQueryUbicacion, connection);
 
             adaptador.UpdateCommand = new SqlCommand(sqlQueryUbicacion, connection);
@@ -155,13 +195,13 @@ namespace Presentacion_Prueba
             adaptador.UpdateCommand.ExecuteNonQuery();
 
             sqlQueryDirecta = "INSERT INTO [Empleado] ([Id_UbicacionEmpleados], [Id_TelefEmpleados], [Id_Estado], [Nombre], [DNI], [Fecha_De_Inicio], [Observaciones]) values (8, 4, 1, '" + txtNombre.Text + "', " +
-              ""+ txtDNI.Text + ",  '2021-11-20', '" + txtObservaciones.Text + "')";
+              ""+ txtDNI.Text + ",  '" + fecha_de_hoy + "', '" + txtObservaciones.Text + "')";
             command = new SqlCommand(sqlQueryDirecta, connection);
 
             adaptador.UpdateCommand = new SqlCommand(sqlQueryDirecta, connection);
             adaptador.UpdateCommand.ExecuteNonQuery();
 
-
+           
 
 
 
@@ -169,6 +209,25 @@ namespace Presentacion_Prueba
             connection.Close();
 
 
+        }
+
+        private void cbProvincias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+
+
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            lblInforme.Text = "";
+            txtBarrio.Clear();
+            txtDireccion.Clear();
+            txtCiudad.Clear();
+            txtDNI.Clear();
+            txtObservaciones.Clear();
+            txtTelefono.Clear();
+            txtBuscador.Clear();
         }
     }
 }

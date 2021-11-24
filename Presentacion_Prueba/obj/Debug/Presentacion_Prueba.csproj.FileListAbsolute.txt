@@ -35,3 +35,17 @@ C:\Users\user\Desktop\ChallengeC#\Presentacion-Prueba\Presentacion_Prueba\obj\De
 C:\Users\user\Desktop\ChallengeC#\Presentacion-Prueba\Presentacion_Prueba\obj\Debug\Presentacion_Prueba.formMenu.resources
 C:\Users\Samuel\Desktop\dev\Presentacion-Prueba\Presentacion_Prueba\obj\Debug\Presentacion_Prueba.UpdateEmpleado.resources
 C:\Users\Samuel\Desktop\dev\Presentacion-Prueba\Presentacion_Prueba\obj\Debug\Presentacion_Prueba.formMenu.resources
+C:\Users\user\Desktop\Proyecto v2\Prueba-V2\Presentacion_Prueba\bin\Debug\Diarios.mdb
+C:\Users\user\Desktop\Proyecto v2\Prueba-V2\Presentacion_Prueba\bin\Debug\Presentacion_Prueba.exe.config
+C:\Users\user\Desktop\Proyecto v2\Prueba-V2\Presentacion_Prueba\bin\Debug\Presentacion_Prueba.exe
+C:\Users\user\Desktop\Proyecto v2\Prueba-V2\Presentacion_Prueba\bin\Debug\Presentacion_Prueba.pdb
+C:\Users\user\Desktop\Proyecto v2\Prueba-V2\Presentacion_Prueba\obj\Debug\Presentacion_Prueba.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\Proyecto v2\Prueba-V2\Presentacion_Prueba\obj\Debug\Presentacion_Prueba.CrearEmpleado.resources
+C:\Users\user\Desktop\Proyecto v2\Prueba-V2\Presentacion_Prueba\obj\Debug\Presentacion_Prueba.UpdateEmpleado.resources
+C:\Users\user\Desktop\Proyecto v2\Prueba-V2\Presentacion_Prueba\obj\Debug\Presentacion_Prueba.PruebaConexion.resources
+C:\Users\user\Desktop\Proyecto v2\Prueba-V2\Presentacion_Prueba\obj\Debug\Presentacion_Prueba.formMenu.resources
+C:\Users\user\Desktop\Proyecto v2\Prueba-V2\Presentacion_Prueba\obj\Debug\Presentacion_Prueba.Properties.Resources.resources
+C:\Users\user\Desktop\Proyecto v2\Prueba-V2\Presentacion_Prueba\obj\Debug\Presentacion_Prueba.csproj.GenerateResource.cache
+C:\Users\user\Desktop\Proyecto v2\Prueba-V2\Presentacion_Prueba\obj\Debug\Presentacion_Prueba.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\Proyecto v2\Prueba-V2\Presentacion_Prueba\obj\Debug\Presentacion_Prueba.exe
+C:\Users\user\Desktop\Proyecto v2\Prueba-V2\Presentacion_Prueba\obj\Debug\Presentacion_Prueba.pdb
