@@ -38,5 +38,11 @@ namespace Presentacion_Prueba
             Form formularioCrear = new CrearEmpleado();
             formularioCrear.Show();
         }
+
+        private void buscarPorNombreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form Buscar = new PruebaConexion();
+            Buscar.Show();
+        }
     }
 }

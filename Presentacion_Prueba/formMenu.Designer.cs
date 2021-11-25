@@ -34,6 +34,7 @@ namespace Presentacion_Prueba
             this.empleadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultarModificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buscarPorNombreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +51,8 @@ namespace Presentacion_Prueba
             // archivoToolStripMenuItem
             // 
             this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.empleadosToolStripMenuItem});
+            this.empleadosToolStripMenuItem,
+            this.buscarPorNombreToolStripMenuItem});
             this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
             this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.archivoToolStripMenuItem.Text = "Archivo";
@@ -79,6 +81,13 @@ namespace Presentacion_Prueba
             this.consultarModificarToolStripMenuItem.Text = "Consultar/Modificar";
             this.consultarModificarToolStripMenuItem.Click += new System.EventHandler(this.consultarModificarToolStripMenuItem_Click);
             // 
+            // buscarPorNombreToolStripMenuItem
+            // 
+            this.buscarPorNombreToolStripMenuItem.Name = "buscarPorNombreToolStripMenuItem";
+            this.buscarPorNombreToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.buscarPorNombreToolStripMenuItem.Text = "Buscar por Nombre";
+            this.buscarPorNombreToolStripMenuItem.Click += new System.EventHandler(this.buscarPorNombreToolStripMenuItem_Click);
+            // 
             // formMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -103,5 +112,6 @@ namespace Presentacion_Prueba
         private System.Windows.Forms.ToolStripMenuItem empleadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem consultarModificarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem buscarPorNombreToolStripMenuItem;
     }
 }

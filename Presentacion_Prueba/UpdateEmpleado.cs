@@ -30,7 +30,10 @@ namespace Presentacion_Prueba
             SqlConnection connection;
 
             //Conexion a db
-            connectionString = @"Server=.;Data Source=MAXI\MAX;Initial Catalog=Autos para 5;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            //String de maxi
+            //connectionString = @"Server=.;Data Source=MAXI\MAX;Initial Catalog=Autos para 5;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            //String Sam
+            connectionString = @"Server = PC-SAMUEL\SMONTIVERO; Database = Autos para 5; Trusted_Connection = True; "; 
             connection = new SqlConnection(connectionString);
 
             //Busqueda de coincidencia
@@ -38,7 +41,8 @@ namespace Presentacion_Prueba
             sqlQuery = "SELECT [Id_Empleado], [Nombre], [Direccion], [Barrio].[Descripcion] AS Barrio, [Ciudad].[Descripcion] AS Ciudad, [Provincia].[Descripcion] AS Provincia, Telefonos_Empleados.Telefono AS Telefono, [DNI], [Empleado].[Fecha_de_Inicio], [Empleado].[Observaciones]" +
                     "FROM[Autos para 5].[dbo].[Empleado] JOIN [Autos para 5].[dbo].[Ubicacion_Empleados] ON [Empleado].[Id_UbicacionEmpleados] = [Ubicacion_Empleados].[Id_UbicacionEmpleados] " +
                     "JOIN[Autos para 5].[dbo].[Barrio] ON [Ubicacion_Empleados].[Id_Barrio] = [Barrio].[Id_Barrio] JOIN [Autos para 5].[dbo].[Ciudad] ON [Barrio].[Id_Ciudad] = [Ciudad].[Id_Ciudad] " +
-                    "JOIN[Autos para 5].[dbo].[Provincia] ON [Ciudad].[Id_Ciudad] = [Provincia].[Id_Provincia] JOIN [Autos para 5].[dbo].[Telefonos_Empleados] ON [Empleado].[Id_TelefEmpleados] = [Telefonos_Empleados].[Id_TelefEmpleados] WHERE [Nombre] LIKE '%" + txtBuscador.Text + "%' AND [Empleado].[Id_Estado] = 1";
+                    "JOIN[Autos para 5].[dbo].[Provincia] ON [Ciudad].[Id_Ciudad] = [Provincia].[Id_Provincia] JOIN [Autos para 5].[dbo].[Telefonos_Empleados] ON [Empleado].[Id_TelefEmpleados] = [Telefonos_Empleados].[Id_TelefEmpleados] WHERE [Nombre] LIKE '%" + txtBuscador.Text + "%' AND [Empleado].[Id_Estado] = 1"; ;
+
 
 
             //Abrir conexion
@@ -65,7 +69,33 @@ namespace Presentacion_Prueba
         private void CrearEmpleado_Load(object sender, EventArgs e)
         {
             lblInforme.Text = "";
+            //Agregar datos al combobox 'provincias'
+            String connectionString; // se crea un string de conexion a la db
+            SqlConnection connection;//var de conexion sql
 
+            //se escribe el stringconnection al directorio de la db
+            //String de maxi
+            //connectionString = @"Server=.;Data Source=MAXI\MAX;Initial Catalog=Autos para 5;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            //String Sam
+            connectionString = @"Server = PC-SAMUEL\SMONTIVERO; Database = Autos para 5; Trusted_Connection = True; ";
+            connection = new SqlConnection(connectionString);
+
+            //creamos el comando para traer las provincias con su descripcion
+            SqlCommand comando = new SqlCommand("SELECT Descripcion FROM Provincia", connection);
+
+            //abrimos conexion con la base de datos
+            connection.Open();
+
+            //creamos un registro que lea el comando sql creado arriba
+
+            SqlDataReader registro = comando.ExecuteReader();
+
+            //'mientras haya datos en el registro', los combierte a string y los agrega al Combobox
+            while (registro.Read())
+            {
+                cbProvincias.Items.Add(registro["Descripcion"].ToString());
+            }
+            connection.Close();
         }
 
         private void dgvBuscaEmpleado_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -74,7 +104,7 @@ namespace Presentacion_Prueba
             txtDireccion.Text = dgvBuscaEmpleado.SelectedCells[2].Value.ToString();
             txtBarrio.Text = dgvBuscaEmpleado.SelectedCells[3].Value.ToString();
             txtCiudad.Text = dgvBuscaEmpleado.SelectedCells[4].Value.ToString();
-            txtProvincia.Text = dgvBuscaEmpleado.SelectedCells[5].Value.ToString();
+            cbProvincias.SelectedValue = dgvBuscaEmpleado.SelectedCells[5].Value.ToString();
             txtTelefono.Text = dgvBuscaEmpleado.SelectedCells[6].Value.ToString();
             txtDNI.Text = dgvBuscaEmpleado.SelectedCells[7].Value.ToString();
             txtFechaInicio.Text = dgvBuscaEmpleado.SelectedCells[8].Value.ToString();
@@ -88,8 +118,10 @@ namespace Presentacion_Prueba
             SqlConnection connection;
             SqlDataAdapter adaptador = new SqlDataAdapter();
 
-
-            connectionString = @"Server=.;Data Source=MAXI\MAX;Initial Catalog=Autos para 5;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            //String maxi
+            //connectionString = @"Server=.;Data Source=MAXI\MAX;Initial Catalog=Autos para 5;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            //String Sam
+            connectionString = @"Server = PC-SAMUEL\SMONTIVERO; Database = Autos para 5; Trusted_Connection = True; ";
             connection = new SqlConnection(connectionString);
 
             //Validacion de datos- Telefono-DNI
@@ -109,7 +141,7 @@ namespace Presentacion_Prueba
 
                 lblInforme.BackColor = Color.Green;
                 lblInforme.Text = "Se han guardados los datos!";
-
+                return;
             }
             else
             {
@@ -128,7 +160,7 @@ namespace Presentacion_Prueba
 
                 lblInforme.BackColor = Color.Green;   
                 lblInforme.Text = "Se han guardados los datos!";
-
+                return;
             }
             else
             {
@@ -180,7 +212,7 @@ namespace Presentacion_Prueba
 
             //Actualizacion Provincia en db
 
-            sqlQueryProvincia = "UPDATE [Provincia] SET [Descripcion] = '" + txtProvincia.Text + "' FROM [Provincia] JOIN [Ciudad] ON [Ciudad].[Id_Provincia] = [Provincia].[Id_Provincia] " +
+            sqlQueryProvincia = "UPDATE [Provincia] SET [Descripcion] = '" + cbProvincias.SelectedValue + "' FROM [Provincia] JOIN [Ciudad] ON [Ciudad].[Id_Provincia] = [Provincia].[Id_Provincia] " +
                 " WHERE [Provincia].[Descripcion] = '" + dgvBuscaEmpleado.SelectedCells[5].Value.ToString() + "' ";
             command = new SqlCommand(sqlQueryProvincia, connection);
 
@@ -224,7 +256,10 @@ namespace Presentacion_Prueba
             lblInforme.BackColor = Color.Green;
             lblInforme.Text = "Se han eliminado los campos con éxito";
 
-            connectionString = @"Server=.;Data Source=MAXI\MAX;Initial Catalog=Autos para 5;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            //String de maxi
+            //connectionString = @"Server=.;Data Source=MAXI\MAX;Initial Catalog=Autos para 5;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            //String Sam
+            connectionString = @"Server = PC-SAMUEL\SMONTIVERO; Database = Autos para 5; Trusted_Connection = True; "; 
             connection = new SqlConnection(connectionString);
             connection.Open();
 
@@ -243,6 +278,8 @@ namespace Presentacion_Prueba
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
+
+            
             //Limpiar txt
             lblInforme.Text = "";
             txtBarrio.Clear();
@@ -251,7 +288,7 @@ namespace Presentacion_Prueba
             txtDNI.Clear();
             txtFechaInicio.Clear();
             txtObservaciones.Clear();
-            txtProvincia.Clear();
+            //cbProvincias.
             txtTelefono.Clear();
             txtBuscador.Clear();
         }
